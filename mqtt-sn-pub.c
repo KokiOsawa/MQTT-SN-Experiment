@@ -342,6 +342,8 @@ int main(int argc, char* argv[])
 
             uint16_t message_len = strlen(own_string_data);
             mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
+            mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
+            mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
         }
 
         // Finally, disconnect
