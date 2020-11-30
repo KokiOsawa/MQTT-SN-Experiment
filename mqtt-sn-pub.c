@@ -165,13 +165,13 @@ static void parse_opts(int argc, char** argv)
             topic_id = atoi(optarg);
             break;
 
-        case 'cu':
+        /*case 'cu':
             publish_count = atoi(optarg);
             break;
         
         case 'cs':
             publish_string_count = atoi(optarg);
-            break;
+            break;*/
 
         case 1000:
             mqtt_sn_enable_frwdencap();
