@@ -297,6 +297,47 @@ int main(int argc, char* argv[])
         if (message_file) {
             publish_file(sock, message_file);
         } else {
+            //edit by KokiOswa(2020-12-01)
+            struct timeval myTime;    // time_t構造体を定義．1970年1月1日からの秒数を格納するもの
+            struct tm *time_st;       // tm構造体を定義．年月日時分秒をメンバ変数に持つ構造体
+            const char weekName[7][4] = {   // 曜日は数字としてしか得られないので，文字列として用意
+                "Sun",
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat"
+            };
+
+            /* 時刻取得 */
+            gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
+            time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
+
+            /*printf("Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
+                    time_st->tm_year+1900,     // 年
+                    time_st->tm_mon+1,         // 月
+                    time_st->tm_mday,          // 日
+                    weekName[time_st->tm_wday],// 曜日
+                    time_st->tm_hour,          // 時
+                    time_st->tm_min,           // 分
+                    time_st->tm_sec,           // 秒
+                    myTime.tv_usec,            // マイクロ秒
+                    packet->data
+            );*/
+            char own_string_data[100];
+            sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
+                    time_st->tm_year+1900,     // 年
+                    time_st->tm_mon+1,         // 月
+                    time_st->tm_mday,          // 日
+                    weekName[time_st->tm_wday],// 曜日
+                    time_st->tm_hour,          // 時
+                    time_st->tm_min,           // 分
+                    time_st->tm_sec,           // 秒
+                    myTime.tv_usec,            // マイクロ秒
+                    message_data
+            );
+
             uint16_t message_len = strlen(message_data);
             mqtt_sn_send_publish(sock, topic_id, topic_id_type, message_data, message_len, qos, retain);
         }
