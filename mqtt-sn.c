@@ -778,7 +778,7 @@ void mqtt_sn_print_publish_packet(publish_packet_t* packet)
         };
         }
     } else {
-        printf("%s\n", packet->data);
+        printf("[Recieve Publish]%s\n", packet->data);
     }
 }
 
