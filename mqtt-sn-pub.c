@@ -33,6 +33,8 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <signal.h>
+#include <time.h>
+#include <sys/time.h>
 
 #include "mqtt-sn.h"
 
