@@ -353,9 +353,9 @@ int main(int argc, char* argv[])
                     };
                 }
             }
-            else*///{
+            else{
                 /* 時刻取得 */
-                gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
+                /*gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
                 time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
                 sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
                     time_st->tm_year+1900,     // 年
@@ -371,8 +371,10 @@ int main(int argc, char* argv[])
 
                 uint16_t message_len = strlen(own_string_data);
                 mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
-            //}
-            
+            }
+            */
+            uint16_t message_len = strlen(message_data);
+            mqtt_sn_send_publish(sock, topic_id, topic_id_type, message_data, message_len, qos, retain);
         }
 
         // Finally, disconnect
