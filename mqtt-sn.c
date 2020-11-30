@@ -35,6 +35,7 @@
 #include <time.h>
 #include <errno.h>
 #include <stdarg.h>
+#include <sys/time.h>
 
 #include "mqtt-sn.h"
 
@@ -778,7 +779,36 @@ void mqtt_sn_print_publish_packet(publish_packet_t* packet)
         };
         }
     } else {
-        printf("[Recieve Publish]%s\n", packet->data);
+        //edit by KokiOswa(2020-12-01)
+        struct timeval myTime;    // time_t構造体を定義．1970年1月1日からの秒数を格納するもの
+        struct tm *time_st;       // tm構造体を定義．年月日時分秒をメンバ変数に持つ構造体
+        const char weekName[7][4] = {   // 曜日は数字としてしか得られないので，文字列として用意
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        };
+
+        /* 時刻取得 */
+        gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
+        time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
+
+        printf("Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
+                time_st->tm_year+1900,     // 年
+                time_st->tm_mon+1,         // 月
+                time_st->tm_mday,          // 日
+                weekName[time_st->tm_wday],// 曜日
+                time_st->tm_hour,          // 時
+                time_st->tm_min,           // 分
+                time_st->tm_sec,           // 秒
+                myTime.tv_usec,            // マイクロ秒
+                packet->data
+        );
+
+        //printf("[Recieve Publish]%s\n", packet->data);
     }
 }
 
