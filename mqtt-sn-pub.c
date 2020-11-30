@@ -346,7 +346,7 @@ int main(int argc, char* argv[])
                         printf("Worning! (Own defined by KokiOsawa) : In this program, it is up to 10000 publish. If you want more than this, please change the program.");
                     }
                     for(int = count_box ; publish_count >= count_box ; count_box++){
-                        strcat(message_data, "test-%05d",count_box +1);
+                        sprintf(message_data, "test-%05d",count_box +1);
                         gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
                         time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
                         sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
