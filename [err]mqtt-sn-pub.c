@@ -100,7 +100,7 @@ static void parse_opts(int argc, char** argv)
     int option_index = 0;
 
     // Parse the options/switches
-    while ((ch = getopt_long (argc, argv, "df:h:i:k:e:lm:np:q:rst:T:?:cu:cs", long_options, &option_index)) != -1)
+    while ((ch = getopt_long (argc, argv, "df:h:i:k:e:lm:np:q:rst:T:?", long_options, &option_index)) != -1)
     {
         switch (ch) {
         case 'd':
@@ -165,13 +165,13 @@ static void parse_opts(int argc, char** argv)
             topic_id = atoi(optarg);
             break;
 
-        case 'cu':
+        /*case 'cu':
             publish_count = atoi(optarg);
             break;
         
         case 'cs':
             publish_string_count = atoi(optarg);
-            break;
+            break;*/
 
         case 1000:
             mqtt_sn_enable_frwdencap();
@@ -323,7 +323,7 @@ int main(int argc, char* argv[])
                 "Fri",
                 "Sat"
             };
-            if(publish_string_count <= 40){
+            /*if(publish_string_count <= 40){
                 printf("Worning! (Own defined by KokiOsawa) : The Publish packet message may overflow at the specified number of bytes.%n");
             }
             char own_string_data[publish_string_count];
@@ -353,7 +353,46 @@ int main(int argc, char* argv[])
                 }
             }
             else{
-                /* 時刻取得 */
+                ////時刻取得////
+                gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
+                time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
+                sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
+                    time_st->tm_year+1900,     // 年
+                    time_st->tm_mon+1,         // 月
+                    time_st->tm_mday,          // 日
+                    weekName[time_st->tm_wday],// 曜日
+                    time_st->tm_hour,          // 時
+                    time_st->tm_min,           // 分
+                    time_st->tm_sec,           // 秒
+                    myTime.tv_usec,            // マイクロ秒
+                    message_data
+                );
+
+                uint16_t message_len = strlen(own_string_data);
+                mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
+            }*/
+            if(message_data == "test10"){
+                publish_count = 10;
+                for(int = count_box = 0 ; publish_count >= count_box ; count_box++){
+                        sprintf(message_data, "test-%05d",count_box +1);
+                        gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
+                        time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
+                        sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
+                            time_st->tm_year+1900,     // 年
+                            time_st->tm_mon+1,         // 月
+                            time_st->tm_mday,          // 日
+                            weekName[time_st->tm_wday],// 曜日
+                            time_st->tm_hour,          // 時
+                            time_st->tm_min,           // 分
+                            time_st->tm_sec,           // 秒
+                            myTime.tv_usec,            // マイクロ秒
+                            message_data
+                        );
+                        uint16_t message_len = strlen(own_string_data);
+                        mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
+                    };
+            }
+            else{
                 gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
                 time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
                 sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
@@ -371,6 +410,7 @@ int main(int argc, char* argv[])
                 uint16_t message_len = strlen(own_string_data);
                 mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
             }
+
         }
 
         // Finally, disconnect
