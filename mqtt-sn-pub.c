@@ -330,6 +330,9 @@ int main(int argc, char* argv[])
             else if(strcmp(message_data,"test10000")==0){
                 publish_count = 10000;
             }
+            else if(strcmp(message_data,"test100000")==0){
+                publish_count = 100000;
+            }
             else{
                 publish_count = 1;
             }
