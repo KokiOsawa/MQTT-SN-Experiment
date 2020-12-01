@@ -56,7 +56,7 @@ uint8_t debug = 0;
 
 //own defined
 int publish_count;
-int publish_string_count;
+int publish_string_count = 100;
 
 
 static void usage()
@@ -394,6 +394,7 @@ int main(int argc, char* argv[])
                 };
             }
             else{
+                char own_string_data[publish_string_count];
                 gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
                 time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
                 sprintf(own_string_data, "Date : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
