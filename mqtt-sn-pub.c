@@ -314,7 +314,7 @@ int main(int argc, char* argv[])
                 "Fri",
                 "Sat"
             };
-            if(message_data == 'test10'){
+            if(strcmp(message_data,"test10")==0){
                 char own_string_data[publish_string_count];
                 gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
                 time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
