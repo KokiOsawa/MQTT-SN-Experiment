@@ -341,7 +341,7 @@ int main(int argc, char* argv[])
                 char own_string_data[publish_string_count];
                 gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
                 time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
-                sprintf(own_string_data, "Send Time : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
+                sprintf(own_string_data, "Send Time : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s",     // 現在時刻
                     time_st->tm_year+1900,     // 年
                     time_st->tm_mon+1,         // 月
                     time_st->tm_mday,          // 日
