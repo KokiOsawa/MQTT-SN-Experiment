@@ -314,8 +314,8 @@ int main(int argc, char* argv[])
                 "Fri",
                 "Sat"
             };
-            if(strcmp(message_data,"test10")==0){
-                publish_count = 10;
+            if(strcmp(message_data,"test5")==0){
+                publish_count = 5;
                 for(int count_box = 0 ; publish_count >= count_box ; count_box++){
                     sprintf(message_data, "test-%05d",count_box +1);
                     char own_string_data[publish_string_count];
