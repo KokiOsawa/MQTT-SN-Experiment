@@ -323,26 +323,12 @@ int main(int argc, char* argv[])
             }
             else if(strcmp(message_data,"test100")==0){
                 publish_count = 100;
-                for(int count_box = 0 ; publish_count > count_box ; count_box ++){
-                    sprintf(message_data, "test-%05d",count_box +1);
-                    char own_string_data[publish_string_count];
-                    gettimeofday(&myTime, NULL);    // 現在時刻を取得してmyTimeに格納．通常のtime_t構造体とsuseconds_tに値が代入される
-                    time_st = localtime(&myTime.tv_sec);    // time_t構造体を現地時間でのtm構造体に変換
-                    sprintf(own_string_data, "Date10 : %d/%02d/%02d(%s) %02d:%02d:%02d.%06d :%s\n",     // 現在時刻
-                        time_st->tm_year+1900,     // 年
-                        time_st->tm_mon+1,         // 月
-                        time_st->tm_mday,          // 日
-                        weekName[time_st->tm_wday],// 曜日
-                        time_st->tm_hour,          // 時
-                        time_st->tm_min,           // 分
-                        time_st->tm_sec,           // 秒
-                        myTime.tv_usec,            // マイクロ秒
-                        message_data
-                    );
-                uint16_t message_len = strlen(own_string_data);
-                mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
-                usleep(microsecond);
-                }
+            }
+            else if(strcmp(message_data,"test1000")==0){
+                publish_count = 1000;
+            }
+            else if(strcmp(message_data,"test10000")==0){
+                publish_count = 10000;
             }
             else{
                 publish_count = 1;
