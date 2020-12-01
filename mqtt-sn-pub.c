@@ -314,6 +314,7 @@ int main(int argc, char* argv[])
                 "Fri",
                 "Sat"
             };
+            int microsecond = 1 * 1000;
             if(strcmp(message_data,"test5")==0){
                 publish_count = 5;
                 for(int count_box = 0 ; publish_count > count_box ; count_box ++){
@@ -378,6 +379,7 @@ int main(int argc, char* argv[])
                     );
                 uint16_t message_len = strlen(own_string_data);
                 mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
+                usleep(microsecond);
                 }
             }
             else{
