@@ -328,8 +328,8 @@ int main(int argc, char* argv[])
                 myTime.tv_usec,            // マイクロ秒
                 message_data
                 );
-            uint16_t message_len = strlen(message_data);
-            mqtt_sn_send_publish(sock, topic_id, topic_id_type, message_data, message_len, qos, retain);
+            uint16_t message_len = strlen(own_string_data);
+            mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
         }
 
         // Finally, disconnect
