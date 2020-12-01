@@ -54,6 +54,9 @@ uint8_t retain = FALSE;
 uint8_t one_message_per_line = FALSE;
 uint8_t debug = 0;
 
+//own defined
+int publish_count;
+int publish_string_count = 100;
 
 static void usage()
 {
@@ -300,7 +303,7 @@ int main(int argc, char* argv[])
             publish_file(sock, message_file);
         } else {
             //edit by KokiOswa(2020-12-01)
-            struct timeval myTime;    // time_t構造体を定義．1970年1月1日からの秒数を格納するもの
+            /*struct timeval myTime;    // time_t構造体を定義．1970年1月1日からの秒数を格納するもの
             struct tm *time_st;       // tm構造体を定義．年月日時分秒をメンバ変数に持つ構造体
             const char weekName[7][4] = {   // 曜日は数字としてしか得られないので，文字列として用意
                 "Sun",
@@ -324,7 +327,7 @@ int main(int argc, char* argv[])
                 time_st->tm_sec,           // 秒
                 myTime.tv_usec,            // マイクロ秒
                 message_data
-                );
+                );*/
             uint16_t message_len = strlen(message_data);
             mqtt_sn_send_publish(sock, topic_id, topic_id_type, message_data, message_len, qos, retain);
         }
