@@ -57,6 +57,7 @@ uint8_t debug = 0;
 //own defined
 int publish_count;
 int publish_string_count = 100;
+int publish_padding;
 
 static void usage()
 {
@@ -315,23 +316,73 @@ int main(int argc, char* argv[])
                 "Sat"
             };
             int microsecond = 1 * 1000;
+            publish_padding = 0;
+
             if(strcmp(message_data,"test5")==0){
                 publish_count = 5;
+            }
+            else if(strcmp(message_data,"test5pd100")==0){
+                publish_count = 5;
+                publish_padding = 100;
+            }
+            else if(strcmp(message_data,"test5pd200")==0){
+                publish_count = 5;
+                publish_padding = 200;
             }
             else if(strcmp(message_data,"test10")==0){
                 publish_count = 10;
             }
+            else if(strcmp(message_data,"test10pd100")==0){
+                publish_count = 10;
+                publish_padding = 100;
+            }
+            else if(strcmp(message_data,"test10pd200")==0){
+                publish_count = 10;
+                publish_padding = 200;
+            }
             else if(strcmp(message_data,"test100")==0){
                 publish_count = 100;
+            }
+            else if(strcmp(message_data,"test100pd100")==0){
+                publish_count = 100;
+                publish_padding = 100;
+            }
+            else if(strcmp(message_data,"test100pd200")==0){
+                publish_count = 100;
+                publish_padding = 200;
             }
             else if(strcmp(message_data,"test1000")==0){
                 publish_count = 1000;
             }
+            else if(strcmp(message_data,"test1000pd100")==0){
+                publish_count = 1000;
+                publish_padding = 100;
+            }
+            else if(strcmp(message_data,"test1000pd200")==0){
+                publish_count = 1000;
+                publish_padding = 200;
+            }
             else if(strcmp(message_data,"test10000")==0){
                 publish_count = 10000;
             }
+            else if(strcmp(message_data,"test10000pd100")==0){
+                publish_count = 10000;
+                publish_padding = 100;
+            }
+            else if(strcmp(message_data,"test10000pd200")==0){
+                publish_count = 10000;
+                publish_padding = 200;
+            }
             else if(strcmp(message_data,"test100000")==0){
                 publish_count = 100000;
+            }
+            else if(strcmp(message_data,"test100000pd100")==0){
+                publish_count = 100000;
+                publish_padding = 100;
+            }
+            else if(strcmp(message_data,"test100000pd200")==0){
+                publish_count = 100000;
+                publish_padding = 200;
             }
             else{
                 publish_count = 1;
@@ -353,6 +404,13 @@ int main(int argc, char* argv[])
                     message_data
                 );
                 uint16_t message_len = strlen(own_string_data);
+                if(publish_padding != 0){
+                    int padding_length;
+                    padding_length = publish_padding - message_len;
+                    for(int padding_count = 0 ; padding_count > padding_length ; padding_count++){
+                        sprintf(own_string_data, "%s-"own_string_data);
+                    }
+                }
                 mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
                 usleep(microsecond);
             }
