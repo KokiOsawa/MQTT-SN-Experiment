@@ -56,7 +56,7 @@ uint8_t debug = 0;
 
 //own defined
 int publish_count;
-int publish_string_count = 100;
+int publish_string_count = 500;
 int publish_padding;
 
 static void usage()
