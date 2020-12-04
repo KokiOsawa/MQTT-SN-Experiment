@@ -387,6 +387,7 @@ int main(int argc, char* argv[])
             else{
                 publish_count = 1;
             }
+            publish_padding = publish_padding - 7;
             for(int count_box = 0 ; publish_count > count_box ; count_box ++){
                 sprintf(message_data, "test-%05d",count_box +1);
                 char own_string_data[publish_string_count];
@@ -405,7 +406,6 @@ int main(int argc, char* argv[])
                 );
                 uint16_t message_len = strlen(own_string_data);
                 if(publish_padding != 0){
-                    publish_padding = publish_padding - 7;
                     int padding_length;
                     padding_length = publish_padding - message_len;
                     for(int padding_count = 0 ; padding_length > padding_count ; padding_count++){
