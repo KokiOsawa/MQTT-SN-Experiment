@@ -407,7 +407,7 @@ int main(int argc, char* argv[])
                 if(publish_padding != 0){
                     int padding_length;
                     padding_length = publish_padding - message_len;
-                    for(int padding_count = 0 ; padding_count > padding_length ; padding_count++){
+                    for(int padding_count = 0 ; padding_length > padding_count ; padding_count++){
                         sprintf(own_string_data, "x%s",own_string_data);
                     }
                 }
