@@ -411,7 +411,7 @@ int main(int argc, char* argv[])
                         sprintf(own_string_data, "x%s",own_string_data);
                     }
                 }
-                uint16_t message_len = strlen(own_string_data);
+                message_len = strlen(own_string_data);
                 mqtt_sn_send_publish(sock, topic_id, topic_id_type, own_string_data, message_len, qos, retain);
                 usleep(microsecond);
             }
