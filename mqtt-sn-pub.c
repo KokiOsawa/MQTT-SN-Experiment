@@ -387,7 +387,7 @@ int main(int argc, char* argv[])
             else{
                 publish_count = 1;
             }
-            publish_padding = publish_padding - 7;
+            publish_padding = publish_padding - 7; //padding fix Error correction
             for(int count_box = 0 ; publish_count > count_box ; count_box ++){
                 sprintf(message_data, "test-%05d",count_box +1);
                 char own_string_data[publish_string_count];
