@@ -405,6 +405,7 @@ int main(int argc, char* argv[])
                 );
                 uint16_t message_len = strlen(own_string_data);
                 if(publish_padding != 0){
+                    publish_padding = publish_padding - 7;
                     int padding_length;
                     padding_length = publish_padding - message_len;
                     for(int padding_count = 0 ; padding_length > padding_count ; padding_count++){
