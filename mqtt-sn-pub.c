@@ -21,6 +21,11 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+/*
+  Edit by Koki Osawa (Distributed Systems Group, Kogakuin University, Japan)
+  This program can measure the delay by changing the 
+  number of publications and padding with MQTT-SN.
+*/
 
 #include <stdio.h>
 #include <unistd.h>

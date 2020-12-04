@@ -61,6 +61,34 @@ Publishing
       --wlnid        If Forwarder Encapsulation is enabled, wireless node ID for this client. Defaults to process id.
       --cport <port> Source port for outgoing packets. Uses port in ephemeral range if not specified or set to 0.
 
+    optinal fuction(Koki Osawa added)
+      Entering the following message will help you when measuring the delay.
+      "test5"             send 5 publish messages
+      "test10"            send 10 publish messages
+      "test100"           send 100 publish messages
+      "test1000"          send 1000 publish messages
+      "test10000"         send 10000 publish messages
+      "test100000"        send 100000 publish messages
+
+    If you want to use the padding function, use "pd <number>".
+    The following are currently allowed:
+      "test5pd100"             send 5 publish messages (Just 100 bytes message)
+      "test10pd100"            send 10 publish messages (Just 100 bytes message)
+      "test100pd100"           send 100 publish messages (Just 100 bytes message)
+      "test1000pd100"          send 1000 publish messages (Just 100 bytes message)
+      "test10000pd100"         send 10000 publish messages (Just 100 bytes message)
+      "test100000pd100"        send 100000 publish messages (Just 100 bytes message)
+
+      "test5pd200"             send 5 publish messages (Just 200 bytes message)
+      "test10pd200"            send 10 publish messages (Just 200 bytes message)
+      "test100pd200"           send 100 publish messages (Just 200 bytes message)
+      "test1000pd200"          send 1000 publish messages (Just 200 bytes message)
+      "test10000pd200"         send 10000 publish messages (Just 200 bytes message)
+      "test100000pd200"        send 100000 publish messages (Just 200 bytes message)
+
+
+
+
 
 Subscribing
 -----------
