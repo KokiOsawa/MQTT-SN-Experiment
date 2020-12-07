@@ -320,7 +320,7 @@ int main(int argc, char* argv[])
                 "Fri",
                 "Sat"
             };
-            int microsecond = 100 * 1000;
+            int microsecond = 0.5 * 1000;
             publish_padding = 0;
 
             if(strcmp(message_data,"test5")==0){
