@@ -60,10 +60,10 @@ uint8_t one_message_per_line = FALSE;
 uint8_t debug = 0;
 
 //own defined
-int microsecond;
-int publish_count;
+int microsecond = 1 *1000;
+int publish_count = 1;
 int publish_string_count = 500;
-int publish_padding;
+int publish_padding = 0;
 
 static void usage()
 {
@@ -106,7 +106,7 @@ static void parse_opts(int argc, char** argv)
     int option_index = 0;
 
     // Parse the options/switches
-    while ((ch = getopt_long (argc, argv, "df:h:i:k:e:lm:np:q:rst:T:?:st", long_options, &option_index)) != -1)
+    while ((ch = getopt_long (argc, argv, "df:h:i:k:e:lm:np:q:rst:T:?:st:pc:pp", long_options, &option_index)) != -1)
     {
         switch (ch) {
         case 'd':
@@ -173,6 +173,15 @@ static void parse_opts(int argc, char** argv)
         
         case 'st':
             microsecond = atoi(optarg);
+            break;
+        
+        case 'pc':
+            publish_count = atoi(optarg);
+            break;
+
+        case 'pp':
+            publish_padding = atoi(optarg);
+            break;
 
         case 1000:
             mqtt_sn_enable_frwdencap();
@@ -324,10 +333,8 @@ int main(int argc, char* argv[])
                 "Fri",
                 "Sat"
             };
-            
-            publish_padding = 0;
 
-            if(strcmp(message_data,"test5")==0){
+            /*if(strcmp(message_data,"test5")==0){
                 publish_count = 5;
             }
             else if(strcmp(message_data,"test5pd100")==0){
@@ -395,8 +402,10 @@ int main(int argc, char* argv[])
             }
             else{
                 publish_count = 1;
-            }
+            }*/
             publish_padding = publish_padding - 7; //padding fix Error correction
+            microsecond = microsecond *1000;
+            
             for(int count_box = 0 ; publish_count > count_box ; count_box ++){
                 sprintf(message_data, "test-%05d",count_box +1);
                 char own_string_data[publish_string_count];
