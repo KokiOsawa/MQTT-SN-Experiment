@@ -144,6 +144,24 @@ or MQTT-SN gateway.
       --fe           Enables Forwarder Encapsulation. Mqtt-sn packets are encapsulated according to MQTT-SN Protocol Specification v1.2, chapter 5.5 Forwarder Encapsulation.
       --cport <port> Source port for outgoing packets. Uses port in ephemeral range if not specified or set to 0.
 
+Subscribe data example (optional function)
+------------------
+
+If you use the optional functions, you can get the following results.
+By using this program based on the following command example, you can analyze the delay time in Excel or other programs.
+
+    Usage: ./mqtt-sn-sub <option> > "file name".txt
+
+      Recieve Time : 2020/12/17(Thu) 16:40:10.762885 <-- Send Time : 2020/12/17(Thu) 16:40:10.761221 :test-00001xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.765288 <-- Send Time : 2020/12/17(Thu) 16:40:10.763626 :test-00002xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.768450 <-- Send Time : 2020/12/17(Thu) 16:40:10.766735 :test-00003xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.771549 <-- Send Time : 2020/12/17(Thu) 16:40:10.769640 :test-00004xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.773919 <-- Send Time : 2020/12/17(Thu) 16:40:10.772376 :test-00005xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.775570 <-- Send Time : 2020/12/17(Thu) 16:40:10.775207 :test-00006xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.776703 <-- Send Time : 2020/12/17(Thu) 16:40:10.776295 :test-00007xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.779211 <-- Send Time : 2020/12/17(Thu) 16:40:10.777378 :test-00008xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.780716 <-- Send Time : 2020/12/17(Thu) 16:40:10.778667 :test-00009xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      Recieve Time : 2020/12/17(Thu) 16:40:10.782071 <-- Send Time : 2020/12/17(Thu) 16:40:10.780131 :test-00010xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 License
 -------
